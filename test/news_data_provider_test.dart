@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
@@ -9,7 +10,9 @@ import 'package:search_news_api/data/models/news_model.dart';
 
 class MockDio extends Mock implements Dio {}
 
-void main() {
+void main()async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: "assets/.env");
   late NewsDataProvider newsDataProvider;
   late MockDio mockDio;
 
